@@ -1,0 +1,60 @@
+import nltk
+from textblob import TextBlob
+
+# Ensure the required NLTK data is downloaded
+nltk.download('punkt')
+
+# Create a TextBlob object
+text = "TextBlob is amazingly simple to use. It's great for beginners!"
+blob = TextBlob(text)
+
+# Sentiment Analysis
+print("Sentiment:", blob.sentiment)
+
+# Tokenization
+print("Words:", blob.words)
+print("Sentences:", blob.sentences)
+
+# Spelling Correction
+print("Corrected Text:", blob.correct())
+
+# Translation (requires an active internet connection)
+# Uncomment this line after fixing the issue
+# print("Translation (to French):", blob.translate(to='fr'))
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+pip install newspaper3k textblob
+
+from newspaper import Article
+from textblob import TextBlob
+
+# URL of the news article
+url = "https://example.com/news-article"
+
+# Download and parse the article
+article = Article(url)
+article.download()
+article.parse()
+
+# Print the article text
+print("Article Title:", article.title)
+print("Article Text:", article.text)
+
+# Perform sentiment analysis
+blob = TextBlob(article.text)
+sentiment_score = blob.sentiment.polarity  # Polarity ranges from -1 (negative) to 1 (positive)
+
+# Determine sentiment
+if sentiment_score > 0:
+    sentiment = "Positive"
+elif sentiment_score < 0:
+    sentiment = "Negative"
+else:
+    sentiment = "Neutral"
+
+# Output sentiment results
+print("\nSentiment Analysis:")
+print(f"Sentiment Score: {sentiment_score}")
+print(f"Sentiment: {sentiment}")
+
